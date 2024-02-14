@@ -48,13 +48,13 @@ describe('E2E Test - Order 3 items and checkout', () => {
         cy.get('[data-test="add-to-cart-sauce-labs-bike-light"]').click()
 
         //checking cart
-        cy.get('.shopping_cart_badge').contains('3')
+        cy.get('.shopping_cart_badge').should('have.text','3')
         cy.get('.shopping_cart_link').click()
         cy.get('.cart_list').should('contain','Sauce Labs Backpack', 'Sauce Labs Bike Light', 'Sauce Labs Onesie')
 
         //removing 1 item
         cy.get('[data-test="remove-sauce-labs-backpack"]').click()
-        cy.get('.shopping_cart_badge').contains('2')
+        cy.get('.shopping_cart_badge').should('have.text','2')
 
         //checkout the order
         cy.get('[data-test="checkout"]').click()
@@ -71,11 +71,11 @@ describe('E2E Test - Order 3 items and checkout', () => {
         cy.get('[data-test="lastName"]').type("Tests")
         cy.get('[data-test="postalCode"]').type("54545454")
         cy.get('[data-test="continue"]').click()
-        cy.get('.summary_total_label').should('contain', '19.42')
+        cy.get('.summary_total_label').should('have.text', 'Total: $19.42')
         cy.get('[data-test="finish"]').click()
 
         //checking the successfully ordered
-        cy.get('.complete-header').should('contain', 'Thank you for your order!')
+        cy.get('.complete-header').should('have.text', 'Thank you for your order!')
     
     });
 });
